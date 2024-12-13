@@ -49,7 +49,8 @@ export const createVehicle = async (req: Request, res: Response,next:NextFunctio
 
 export const updateVehicle = async (req: Request, res: Response,next:NextFunction):Promise<void> => {
     const {id} = req.params;
-    if (!id) {
+        const _id =id
+    if (!_id) {
         throw {status: 400, message: 'Vehicle Id Required'};
     }
     try {
@@ -57,7 +58,7 @@ export const updateVehicle = async (req: Request, res: Response,next:NextFunctio
         const {status} = req.body;
 
 
-        const vehicle = await VehicleModel.findByIdAndUpdate(id,
+        const vehicle = await VehicleModel.findByIdAndUpdate(_id,
         { status, lastUpdated: Date.now() },
         { new: true } );
 
