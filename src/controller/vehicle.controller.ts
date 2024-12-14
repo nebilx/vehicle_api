@@ -59,12 +59,13 @@ export const updateVehicle = async (req: Request, res: Response,next:NextFunctio
 
 
         const vehicle = await VehicleModel.findByIdAndUpdate(_id,
-        { status, lastUpdated: Date.now() },
+        { status, lastUpdated: new Date() },
         { new: true } );
 
         if (!vehicle) {
             throw {status: 400, message: 'Vehicle  Not Found'};
         }
+
          res.status(200).json({message: `Vehicle Status Updated Successfully`});
 
     } catch (e: { message: string; status: number } | unknown) {
