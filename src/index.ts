@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express, { Express,Request,Response } from "express";
+import cors from "cors"
 import vehicleRoutes from "./routes/vehicle.routes";
 import connectDB from "./config/db.config";
 import errorhandler from "./middleware/error_handler.middleware";
@@ -14,6 +15,8 @@ connectDB()
 
 // built in middleware for json
 app.use(express.json());
+
+app.use(cors())
 
 app.use("/api", vehicleRoutes);
 
